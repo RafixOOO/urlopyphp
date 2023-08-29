@@ -228,7 +228,7 @@ const formattedDate = `${year}-${month}-${day}`;
                     id: 'my_calendar_pl',
                     format: 'YYYY-MM-DD',
                     refDate: formattedDate,
-                    jumpSize: 8,
+                    jumpSize: 7,
                     calSize: 16,
                     disabledWeekDays: [0,6],
                     data: [
