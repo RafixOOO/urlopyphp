@@ -182,7 +182,7 @@ Copyright (c) 2019 César Chas
                 f_inicio = moment( refDate, format ).subtract(settings.jumpSize, 'days'),
                 f_fin    = moment( refDate, format ).add(settings.jumpSize, 'days'),
                 today    = moment( ).startOf('day'),
-                html            = '<td class="firstColumn">#</td>',
+                html            = '<td class="firstColumn"></td>',
                 f_aux           = '',
                 f_aux_format    = '',
                 dia             = '',
@@ -302,11 +302,9 @@ Copyright (c) 2019 César Chas
                         '<div class="rescalendar_controls ">',
 
                             '<div class="container d-flex justify-content-center"><button style="float:left;" class="move_to_last_month btn btn-outline-secondary"> << </button>',
-                            '<button style="float:left;"  class="move_to_yesterday btn btn-outline-secondary "> < </button>',
 
                             '<input style="width:25%; float:left" class="refDate form-control" type="date" value="' + refDate + '" />',
                             
-                            '<button style="float:left;" class="move_to_tomorrow btn btn-outline-secondary "> > </button>',
                             '<button style="float:left;" class="move_to_next_month btn btn-outline-secondary "> >> </button></div>',
 
                             '<br>',

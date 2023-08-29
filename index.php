@@ -27,7 +27,7 @@ if (!$conn) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Urlopy</title>
         <!-- CSS -->
-        <link rel="stylesheet" href="../src/css/rescalendar.css">
+        <link rel="stylesheet" href="src/css/rescalendar.css">
 
         <style>
 
@@ -209,7 +209,7 @@ select::-ms-expand {
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
-        <script src="../src/js/rescalendar.js"></script>
+        <script src="src/js/rescalendar.js"></script>
         <script>
 
 const currentDate = new Date();
@@ -267,7 +267,7 @@ const formattedDate = `${year}-${month}-${day}`;
             name: '$row[nazwisko] $row[imie]',
             startDate: '$row[data_od]',
             endDate: '$row[data_do]',
-            customClass: 'table-danger text-dark'
+            customClass: 'table-success text-dark'
         },";
     }
 
