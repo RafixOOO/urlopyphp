@@ -267,7 +267,7 @@ const formattedDate = `${year}-${month}-${day}`;
             name: '$row[nazwisko] $row[imie]',
             startDate: '$row[data_od]',
             endDate: '$row[data_do]',
-            customClass: 'table-success text-dark'
+            customClass: 'table-danger text-dark'
         },";
     }
 
