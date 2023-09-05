@@ -235,7 +235,7 @@ const formattedDate = `${year}-${month}-${day}`;
                         <?php 
 
      // Oblicz datę 3 miesiące przed aktualną datą
-     $dateFrom = date('Y-m-d', strtotime('-2 months'));
+     $dateFrom = date('Y-m-d', strtotime('-6 months'));
     
      // Oblicz datę 3 miesiące po aktualnej dacie
      $dateTo = date('Y-m-d', strtotime('+2 months'));
@@ -276,7 +276,7 @@ const formattedDate = `${year}-${month}-${day}`;
 
                     dataKeyField: 'name',
                     dataKeyValues: [<?php
-                         $query = "SELECT distinct nazwisko,imie FROM public.users where idx_dzialu = 50 or
+                         $query = "SELECT distinct nazwisko,imie FROM public.users where aktywny=true and (idx_dzialu = 50 or
                          idx_dzialu = 54 or
                          idx_dzialu = 43 or
                          idx_dzialu = 44 or
@@ -286,7 +286,7 @@ const formattedDate = `${year}-${month}-${day}`;
                          idx_dzialu = 46 or
                          idx_dzialu = 66 or
                          idx_dzialu = 70 or
-                         idx_dzialu = 74 order by nazwisko ASC";
+                         idx_dzialu = 74) order by nazwisko ASC";
            
                $result = pg_query($conn, $query);
            
