@@ -24,7 +24,7 @@ if (!$conn) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link style="color:white;" rel="shortcut icon" href="building-dash.svg">
+        <link rel="shortcut icon" href="building-dash.svg">
         <title>Urlopy</title>
         <!-- CSS -->
         <link rel="stylesheet" href="src/css/rescalendar.css">
