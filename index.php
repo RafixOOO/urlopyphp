@@ -240,7 +240,7 @@ const formattedDate = `${year}-${month}-${day}`;
      // Oblicz datę 3 miesiące po aktualnej dacie
      $dateTo = date('Y-m-d', strtotime('+2 months'));
 
-    $query = "SELECT data_od, data_do, login, imie, nazwisko, idx_dzialu
+    $query = "SELECT data_od, data_do, login, imie, nazwisko, idx_dzialu, typ_absencji
     FROM rcp.absencje aa
     INNER JOIN public.users users ON users.idx_osoby = aa.idx_osoby
     WHERE (idx_dzialu = 50 or
@@ -262,13 +262,17 @@ const formattedDate = `${year}-${month}-${day}`;
         die("Błąd zapytania: " . pg_last_error($conn));
     }
     while ($row = pg_fetch_assoc($result)) {
-        echo "{
-            id: 1,
-            name: '$row[nazwisko] $row[imie]',
-            startDate: '$row[data_od]',
-            endDate: '$row[data_do]',
-            customClass: 'table-danger text-dark'
-        },";
+      $customClass = ($row['typ_absencji'] == 54) ? 'table-info text-dark' : 'table-danger text-dark';
+      $nazwa= ($row['typ_absencji'] == 54) ? 'Plan urlopowy' : 'Urlop';
+      $data = array(
+        'id' => 1,
+        'name' => $row['nazwisko'] . ' ' . $row['imie'],
+        'startDate' => $row['data_od'],
+        'endDate' => $row['data_do'],
+        'customClass' => $customClass,
+        'title' => $nazwa
+      );
+      echo json_encode($data) . ",";
     }
 
 ?>
