@@ -200,10 +200,34 @@ select::-ms-expand {
 
     </head>
 
-    <body>
+   <h4>Urlopy</h4>
 
 
-</h4>   <h4>Urlopy</h4>
+  <body>
+<div style="margin-left: 2%;" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="btnradio1">Administracja</label>
+
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio2">Pracownicy</label>
+
+        </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const radioButtons = document.querySelectorAll('input[name="btnradio"]');
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.id === 'btnradio1') {
+                        window.location.href = 'index.php';
+                    } else if (this.id === 'btnradio2') {
+                        window.location.href = 'pracownik.php';
+                    }
+                });
+            });
+        });
+    </script>
+
             <div class="rescalendar" id="my_calendar_en"></div>
 
 
