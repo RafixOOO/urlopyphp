@@ -212,8 +212,36 @@ if (!$conn) {
 
 <body>
 
+<?php
 
-</h4>   <h4>Pracownicy</h4>
+  $query1 = "
+SELECT
+    COUNT(o.nazwisko) as nazwa
+FROM
+    users o
+JOIN
+    att_log l ON l.idx_osoby = o.idx_osoby
+JOIN
+    dzialy d ON o.idx_dzialu = d.idx_dzialu
+WHERE
+    l.in_out IN ('0', '2')
+    AND l.aktywny = 'true'
+    AND l.idx_device = '20'
+    AND d.nazwa LIKE '%Produkcja%'
+    AND CAST(l.data_czas AS DATE) = CURRENT_DATE;
+";
+
+                $result1 = pg_query($conn, $query1);
+
+                if (!$result1) {
+                    die("Błąd zapytania: " . pg_last_error($conn));
+                }
+                while ($row1 = pg_fetch_assoc($result1)) {
+
+                    echo "<h4>Pracownicy: ".$row1["nazwa"]."</h4>";
+
+                }
+?>
     <div style="margin-left: 2%;" class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
         <label class="btn btn-outline-primary" for="btnradio1">Administracja</label>
