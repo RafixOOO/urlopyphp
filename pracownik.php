@@ -219,7 +219,7 @@ if (!$conn) {
         <label class="btn btn-outline-primary" for="btnradio1">Administracja</label>
     
     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
-        <label class="btn btn-outline-primary" for="btnradio2">Pracownicy</label>
+        <label class="btn btn-outline-primary" for="btnradio2">Produkcja</label>
     
         </div>
     <script>
