@@ -215,20 +215,15 @@ if (!$conn) {
 <?php
 
   $query1 = "
-SELECT
-    COUNT(o.nazwisko) as nazwa
-FROM
-    users o
-JOIN
-    att_log l ON l.idx_osoby = o.idx_osoby
-JOIN
-    dzialy d ON o.idx_dzialu = d.idx_dzialu
-WHERE
-    l.in_out IN ('0', '2')
-    AND l.aktywny = 'true'
-    AND l.idx_device = '20'
-    AND d.nazwa LIKE '%Produkcja%'
-    AND CAST(l.data_czas AS DATE) = CURRENT_DATE;
+SELECT count(distinct o.idx_osoby) as nazwa FROM users o
+                JOIN att_log l ON l.idx_osoby = o.idx_osoby
+                JOIN dzialy d ON o.idx_dzialu = d.idx_dzialu
+                WHERE l.in_out IN ('0', '2')
+                   and l.aktywny = 'true'
+                AND l.idx_device in ('37', '1', '38', '5', '2', '43', '42', '4', '6', '3')
+                --and o.idx_osoby='3001'
+                AND d.nazwa LIKE '%Produkcja%'
+                AND CAST(l.data_czas AS DATE) = CURRENT_DATE
 ";
 
                 $result1 = pg_query($conn, $query1);
@@ -301,29 +296,18 @@ WHERE
                 // Oblicz datę 3 miesiące po aktualnej dacie
    
 
-                $query = "
-SELECT
-    o.nazwisko,
-    o.imie,
-    l.in_out AS Wej_Wyj,
+                $query = "SELECT o.nazwisko,
+       o.imie,
     CAST(l.data_czas AS DATE) AS datewej
-FROM 
-    users o
-JOIN 
-    att_log l ON l.idx_osoby = o.idx_osoby
-JOIN 
-    dzialy d ON o.idx_dzialu = d.idx_dzialu
-WHERE 
-    l.in_out IN ('0', '2')
-    AND l.aktywny = 'true'
-    AND l.idx_device = '20'
-    AND d.nazwa LIKE '%Produkcja%'
-    AND CAST(l.data_czas AS DATE) > '$dateFrom'
-GROUP BY 
-    o.nazwisko, o.imie, l.in_out, CAST(l.data_czas AS DATE)
-ORDER BY 
-    o.imie ASC;
-";
+FROM users o
+JOIN att_log l ON l.idx_osoby = o.idx_osoby
+JOIN dzialy d ON o.idx_dzialu = d.idx_dzialu
+WHERE l.in_out IN ('0', '2')
+AND l.aktywny = 'true'
+AND l.idx_device IN ('37', '1', '38', '5', '2', '43', '42', '4', '6', '3', '45', '20')
+AND d.nazwa LIKE '%Produkcja%'
+                AND CAST(l.data_czas AS DATE) > '$dateFrom'
+                GROUP BY o.nazwisko, o.imie, CAST(l.data_czas AS DATE)";
 
                 $result = pg_query($conn, $query);
 
@@ -349,16 +333,16 @@ ORDER BY
             dataKeyValues: [<?php
                 $query = "SELECT 
                           o.nazwisko,
-                          o.imie
-                          FROM users o, att_log l, dzialy d
-                          WHERE l.idx_osoby = o.idx_osoby
-                          AND l.in_out in ('0', '2')
-                          AND l.idx_osoby = o.idx_osoby
-                          AND o.idx_dzialu = d.idx_dzialu
-                          AND l.aktywny = 'true'
-                          AND l.idx_device in ('20')
-                          and d.nazwa like '%Produkcja'
- group by o.nazwisko, o.imie order By o.imie ASC";
+                        o.imie
+                        FROM users o, att_log l, dzialy d
+                        WHERE l.idx_osoby = o.idx_osoby
+                        --AND l.in_out in ('0', '2')
+                        AND l.idx_osoby = o.idx_osoby
+                        AND o.idx_dzialu = d.idx_dzialu
+                        AND l.aktywny = 'true'
+                        --AND l.idx_device in ('20')
+                        and d.nazwa like '%Produkcja'
+                        group by o.nazwisko, o.imie order By o.nazwisko desc";
 
                 $result = pg_query($conn, $query);
 
