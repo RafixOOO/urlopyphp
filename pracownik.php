@@ -215,15 +215,18 @@ if (!$conn) {
 <?php
 
   $query1 = "
-SELECT count(distinct o.idx_osoby) as nazwa FROM users o
-                JOIN att_log l ON l.idx_osoby = o.idx_osoby
-                JOIN dzialy d ON o.idx_dzialu = d.idx_dzialu
-                WHERE l.in_out IN ('0', '2')
-                   and l.aktywny = 'true'
-                AND l.idx_device in ('37', '1', '38', '5', '2', '43', '42', '4', '6', '3')
-                --and o.idx_osoby='3001'
-                AND d.nazwa LIKE '%Produkcja%'
-                AND CAST(l.data_czas AS DATE) = CURRENT_DATE
+SELECT
+    COUNT(DISTINCT CASE WHEN l.in_out = '0' THEN o.idx_osoby END) -
+    COUNT(DISTINCT CASE WHEN l.in_out = '1' THEN o.idx_osoby END) AS diff_count
+FROM users o
+JOIN att_log l ON l.idx_osoby = o.idx_osoby
+JOIN dzialy d ON o.idx_dzialu = d.idx_dzialu
+WHERE
+    l.aktywny = 'true'
+    AND l.idx_device IN ('37', '1', '38', '5', '2', '43', '42', '4', '6', '3')
+    AND d.nazwa LIKE '%Produkcja%'
+    AND CAST(l.data_czas AS DATE) = CURRENT_DATE;
+
 ";
 
                 $result1 = pg_query($conn, $query1);
@@ -233,7 +236,7 @@ SELECT count(distinct o.idx_osoby) as nazwa FROM users o
                 }
                 while ($row1 = pg_fetch_assoc($result1)) {
 
-                    echo "<h4>Pracownicy: ".$row1["nazwa"]."</h4>";
+                    echo "<h4>Pracownicy: ".$row1["diff_count"]."</h4>";
 
                 }
 ?>
