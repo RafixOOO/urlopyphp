@@ -211,7 +211,8 @@ if (!$conn) {
 </head>
 
 <body>
-
+<!-- 2024 Created by: Rafał Pezda-->
+<!-- link: https://github.com/RafixOOO -->
 <?php
 
   $query1 = "

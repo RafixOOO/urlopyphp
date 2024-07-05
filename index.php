@@ -204,6 +204,8 @@ select::-ms-expand {
 
 
   <body>
+    <!-- 2024 Created by: Rafał Pezda-->
+<!-- link: https://github.com/RafixOOO -->
 <div style="margin-left: 2%;" class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
         <label class="btn btn-outline-primary" for="btnradio1">Administracja</label>
