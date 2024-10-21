@@ -301,7 +301,7 @@ Copyright (c) 2019 César Chas
 
                         '<div class="rescalendar_controls ">',
 
-                            '<div class="container d-flex justify-content-center"><button style="float:left;" class="move_to_last_month btn btn-outline-secondary"> << </button>',
+                            '<div class="container d-flex justify-content-center" style="position: sticky; top: 0; padding: 10px;"><button style="float:left;" class="move_to_last_month btn btn-outline-secondary"> << </button>',
 
                             '<input style="width:25%; float:left" class="refDate form-control" type="date" value="' + refDate + '" />',
                             
